@@ -2,6 +2,7 @@
 // Demonstrates: protected route, fetching user-owned data, RLS-enforced
 // queries, server actions, logout.
 
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { logout } from '../auth/actions';
@@ -50,11 +51,16 @@ export default async function DashboardPage({
         <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
           Dashboard
         </h1>
-        <form action={logout}>
-          <button type="submit" className={secondaryBtn}>
-            Sign out
-          </button>
-        </form>
+        <div className="flex items-center gap-2">
+          <Link href="/teams" className={secondaryBtn}>
+            World Cup teams
+          </Link>
+          <form action={logout}>
+            <button type="submit" className={secondaryBtn}>
+              Sign out
+            </button>
+          </form>
+        </div>
       </header>
 
       {error && (
