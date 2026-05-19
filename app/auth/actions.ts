@@ -15,10 +15,12 @@ async function getOrigin() {
   return h.get('origin') ?? 'http://localhost:3000';
 }
 
+const DEFAULT_POST_LOGIN_PATH = '/teams';
+
 function sanitizeNext(next: string): string {
-  if (!next) return '/';
-  if (!next.startsWith('/') || next.startsWith('//')) return '/';
-  if (next.includes(':')) return '/';
+  if (!next || next === '/') return DEFAULT_POST_LOGIN_PATH;
+  if (!next.startsWith('/') || next.startsWith('//')) return DEFAULT_POST_LOGIN_PATH;
+  if (next.includes(':')) return DEFAULT_POST_LOGIN_PATH;
   return next;
 }
 

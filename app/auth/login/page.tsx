@@ -6,7 +6,7 @@ export default async function LoginPage({
 }: {
   searchParams: Promise<{ error?: string; message?: string; next?: string }>;
 }) {
-  const { error, message, next = '/' } = await searchParams;
+  const { error, message, next = '/teams' } = await searchParams;
 
   return (
     <main className="mx-auto w-full max-w-md px-4 py-16">

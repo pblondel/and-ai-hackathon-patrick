@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
+import { logout } from '../auth/actions';
 
 type Team = {
   id: number;
@@ -73,18 +74,25 @@ export default async function TeamsPage() {
   }
   const groupNames = Array.from(grouped.keys()).sort();
 
+  const secondaryBtn =
+    'inline-flex items-center justify-center rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800';
+
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-10">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
           World Cup teams
         </h1>
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center justify-center rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
-        >
-          Back to dashboard
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/dashboard" className={secondaryBtn}>
+            Dashboard
+          </Link>
+          <form action={logout}>
+            <button type="submit" className={secondaryBtn}>
+              Logout
+            </button>
+          </form>
+        </div>
       </header>
 
       {loadError && (
