@@ -89,7 +89,7 @@ export default async function TeamsPage() {
           </Link>
           <form action={logout}>
             <button type="submit" className={secondaryBtn}>
-              Logout
+              Sign out
             </button>
           </form>
         </div>
