@@ -53,7 +53,7 @@ export default async function DashboardPage({
         </h1>
         <div className="flex items-center gap-2">
           <Link href="/teams" className={secondaryBtn}>
-            World Cup teams
+            Home
           </Link>
           <form action={logout}>
             <button type="submit" className={secondaryBtn}>
